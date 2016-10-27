@@ -1,8 +1,8 @@
 @if (is_array($item))
 	<li class="menu">
-		<span>{{$key}}</span>
+		<span>{{$item['title']}}</span>
 		<ul>
-			@foreach ($item as $k => $subitem)
+			@foreach ($item['menu'] as $k => $subitem)
 				<?php echo view("administrator::partials.menu_item", array(
 					'item' => $subitem,
 					'key' => $k,
@@ -13,7 +13,7 @@
 		</ul>
 	</li>
 @else
-	<li class="item">
+	<li class="item<?=(strpos($_SERVER['REQUEST_URI'], $key) > 0 || ($_SERVER['REQUEST_URI'] == '/admin/settings/site' && $key == 'settings.site')) ? ' focus' : ''?>">
 		@if (strpos($key, $settingsPrefix) === 0)
 			<a href="{{route('admin_settings', array(substr($key, strlen($settingsPrefix))))}}">{{$item}}</a>
 		@elseif (strpos($key, $pagePrefix) === 0)

@@ -33,6 +33,7 @@ View::composer('administrator::index', function($view)
 	$view->assetUrl = url('packages/frozennode/administrator/');
 	$view->route = $route['path'].'/';
 	$view->itemId = isset($view->itemId) ? $view->itemId : null;
+	$view->showAddBtn = empty($config->getOption('showAddBtn')) ? false : true;
 });
 
 //admin settings view

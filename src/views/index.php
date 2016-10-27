@@ -33,6 +33,7 @@
 			data_model: <?php echo json_encode($dataModel) ?>,
 			column_model: <?php echo json_encode($columnModel) ?>,
 			action_permissions: <?php echo json_encode($actionPermissions) ?>,
+			showAddBtn: <?=json_encode($showAddBtn)?>,
 			languages: <?php echo json_encode(trans('administrator::knockout')) ?>
 		};
 </script>

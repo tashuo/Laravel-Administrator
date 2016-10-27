@@ -13,30 +13,14 @@
 				<!-- /ko -->
 			<!-- /ko -->
 			<!-- ko if: actionPermissions.create -->
-				<a class="new_item"
-					data-bind="attr: {href: base_url + modelName() + '/new'},
-								text: '<?php echo trans('administrator::administrator.new') ?> ' + modelSingle()"></a>
+				<!-- ko if: showAddBtn -->
+				<a class="new_item" data-bind="attr: {href: base_url + modelName() + '/new'}, text: '<?php echo trans('administrator::administrator.new') ?> ' + modelSingle()"></a>
+				<!-- /ko -->
 			<!-- /ko -->
 		</div>
 
 		<div class="action_message" data-bind="css: { error: globalStatusMessageType() == 'error', success: globalStatusMessageType() == 'success' },
 										notification: globalStatusMessage "></div>
-	</div>
-
-	<div class="page_container">
-		<div class="per_page">
-			<input type="hidden" data-bind="value: rowsPerPage, select2: {minimumResultsForSearch: -1, data: {results: rowsPerPageOptions},
-											allowClear: false}" />
-			<span> <?php echo trans('administrator::administrator.itemsperpage') ?></span>
-		</div>
-		<div class="paginator">
-			<input type="button" value="<?php echo trans('administrator::administrator.previous') ?>"
-					data-bind="attr: {disabled: pagination.isFirst() || !pagination.last() || !initialized() }, click: function() {page('prev')}" />
-			<input type="button" value="<?php echo trans('administrator::administrator.next') ?>"
-					data-bind="attr: {disabled: pagination.isLast() || !pagination.last() || !initialized() }, click: function() {page('next')}" />
-			<input type="text" data-bind="attr: {disabled: pagination.last() === 0 || !initialized() }, value: pagination.page" />
-			<span data-bind="text: ' / ' + pagination.last()"></span>
-		</div>
 	</div>
 
 	<table class="results" border="0" cellspacing="0" id="customers" cellpadding="0">
@@ -69,6 +53,22 @@
 			<!-- /ko -->
 		</tbody>
 	</table>
+
+	<div class="page_container">
+		<div class="per_page">
+			<input type="hidden" data-bind="value: rowsPerPage, select2: {minimumResultsForSearch: -1, data: {results: rowsPerPageOptions},
+											allowClear: false}" />
+			<span> <?php echo trans('administrator::administrator.itemsperpage') ?></span>
+		</div>
+		<div class="paginator">
+			<input type="button" value="<?php echo trans('administrator::administrator.previous') ?>"
+					data-bind="attr: {disabled: pagination.isFirst() || !pagination.last() || !initialized() }, click: function() {page('prev')}" />
+			<input type="button" value="<?php echo trans('administrator::administrator.next') ?>"
+					data-bind="attr: {disabled: pagination.isLast() || !pagination.last() || !initialized() }, click: function() {page('next')}" />
+			<input type="text" data-bind="attr: {disabled: pagination.last() === 0 || !initialized() }, value: pagination.page" />
+			<span data-bind="text: ' / ' + pagination.last()"></span>
+		</div>
+	</div>
 
 	<div class="loading_rows" data-bind="visible: loadingRows">
 		<div><?php echo trans('administrator::administrator.loading') ?></div>

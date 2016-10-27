@@ -141,6 +141,6 @@ return array(
 	 *
 	 * @type array
 	 */
-	'locales' => array(),
+	'locales' => array(''),
 
 );

@@ -25,13 +25,13 @@ class Enum extends Field {
 
 		$dataOptions = $options['options'];
 		$options['options'] = array();
-
+// echo '<br/>';echo '<br/>';echo '<br/>';var_dump($options);
 		//iterate over the options to create the options assoc array
-		foreach ($dataOptions as $val => $text)
+		foreach ($dataOptions as $key => $val)
 		{
 			$options['options'][] = array(
-				'id' => is_numeric($val) ? $text : $val,
-				'text' => $text,
+				'id' => empty($options['use_value']) ? $key : $val,		// 使用key或val. edit by ta_shuo at 2016/10/24
+				'text' => $val,
 			);
 		}
 

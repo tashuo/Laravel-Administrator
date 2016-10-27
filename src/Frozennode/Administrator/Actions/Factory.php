@@ -151,7 +151,6 @@ class Factory {
 	public function getByName($name, $global = false)
 	{
 		$actions = $global ? $this->getGlobalActions() : $this->getActions();
-
 		//loop over the actions to find our culprit
 		foreach ($actions as $action)
 		{

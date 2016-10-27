@@ -71,10 +71,11 @@ class Menu {
 			//if the item is an array, recursively run this method on it
 			else if (is_array($item))
 			{
-				$menu[$key] = $this->getMenu($item);
+				$menu[$key]['title'] = $item['title'] ?: $key;	// 父菜单名
+				$menu[$key]['menu'] = $this->getMenu($item['menu']);
 
 				//if the submenu is empty, unset it
-				if (empty($menu[$key]))
+				if (empty($menu[$key]['menu']))
 				{
 					unset($menu[$key]);
 				}

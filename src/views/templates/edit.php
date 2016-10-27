@@ -286,8 +286,7 @@
 		<div class="custom_buttons">
 			<!-- ko foreach: actions -->
 				<!-- ko if: has_permission && $root.actionPermissions[action_name] !== false -->
-					<input type="button" data-bind="click: function(){$root.customAction(true, action_name, messages, confirmation)}, value: title,
-																	attr: {disabled: $root.freezeForm() || $root.freezeActions()}" />
+					<input type="button" data-bind="click: function(){$root.customAction(true, action_name, messages, confirmation)}, value: title, attr: {disabled: $root.freezeForm() || $root.freezeActions(), class: add_class}" />
 				<!-- /ko -->
 			<!-- /ko -->
 		</div>
@@ -298,15 +297,18 @@
 			<input type="button" value="<?php echo trans('administrator::administrator.close') ?>"
 				data-bind="click: closeItem, attr: {disabled: $root.freezeForm() || $root.freezeActions()}" />
 
-			<!-- ko if: actionPermissions.delete -->
-				<input type="button" value="<?php echo trans('administrator::administrator.delete') ?>"
+			<!-- ko if: Object.keys(originalEditFields).length > 1 || Object.keys(originalEditFields)[0] != 'id' -->
+				<!-- ko if: actionPermissions.delete -->
+					<input type="button" value="<?php echo trans('administrator::administrator.delete') ?>"
 					data-bind="click: deleteItem, attr: {disabled: $root.freezeForm() || $root.freezeActions()}" />
+				<!-- /ko -->
+
+				<!-- ko if: actionPermissions.update -->
+					<input type="submit" value="<?php echo trans('administrator::administrator.save') ?>"
+					data-bind="attr: {disabled: $root.freezeForm() || $root.freezeActions()}" />
+				<!-- /ko -->
 			<!-- /ko -->
 
-			<!-- ko if: actionPermissions.update -->
-				<input type="submit" value="<?php echo trans('administrator::administrator.save') ?>"
-					data-bind="attr: {disabled: $root.freezeForm() || $root.freezeActions()}" />
-			<!-- /ko -->
 		<!-- /ko -->
 
 		<!-- ko ifnot: $root[$root.primaryKey]() -->
@@ -317,7 +319,7 @@
 					data-bind="attr: {disabled: $root.freezeForm() || $root.freezeActions()}" />
 			<!-- /ko -->
 		<!-- /ko -->
-		<span class="message" data-bind="css: { error: statusMessageType() == 'error', success: statusMessageType() == 'success' },
-										notification: statusMessage "></span>
 	</div>
+
+	<span class="message" data-bind="css: { error: statusMessageType() == 'error', success: statusMessageType() == 'success' },notification: statusMessage "></span>
 </form>
