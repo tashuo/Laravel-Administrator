@@ -19,7 +19,7 @@
 			@include('administrator::partials.menu_item')
 		@endforeach
 	</ul>
-	<div id="right_nav">
+	<!-- <div id="right_nav">
 		@if (count(config('administrator.locales')) > 0)
 			<ul id="lang_menu">
 				<li class="menu">
@@ -42,5 +42,22 @@
 		@if(config('administrator.logout_path'))
 			<a href="{{url(config('administrator.logout_path'))}}" id="logout">{{trans('administrator::administrator.logout')}}</a>
 		@endif
+	</div> -->
+
+	<div id="right_nav">
+		<ul id="lang_menu">
+			<li class="menu">
+				<span>{{ Auth::user()->name }}</span>
+				@if(config('administrator.logout_path'))
+					<ul>
+						<li>
+							<a href="{{url(config('administrator.logout_path'))}}" id="logout">{{trans('administrator::administrator.logout')}}</a>
+						</li>
+					</ul>
+				@endif
+			</li>
+
+		</ul>
+		<a href="{{url('/register')}}" id="back_to_site">{{trans('administrator::administrator.create_new_administrator')}}</a>
 	</div>
 </header>

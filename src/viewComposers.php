@@ -13,6 +13,7 @@ View::composer('administrator::index', function($view)
 	$dataTable = app('admin_datatable');
 	$model = $config->getDataModel();
 	$baseUrl = route('admin_dashboard');
+
 	$route = parse_url($baseUrl);
 
 	//add the view fields
@@ -31,7 +32,7 @@ View::composer('administrator::index', function($view)
 	$view->formWidth = $config->getOption('form_width');
 	$view->baseUrl = $baseUrl;
 	$view->assetUrl = url('packages/frozennode/administrator/');
-	$view->route = $route['path'].'/';
+	$view->route = (isset($route['path']) ? $route['path'] : '') .'/';
 	$view->itemId = isset($view->itemId) ? $view->itemId : null;
 	$view->showAddBtn = empty($config->getOption('showAddBtn')) ? false : true;
 });
