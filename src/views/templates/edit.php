@@ -219,7 +219,7 @@
 							<img data-bind="attr: {src: $root[field_name]()}" onload="window.admin.resizePage()" />
 						<!-- /ko -->
 						<!-- ko if: !display_raw_value || $root.fieldIsDirty(field_name) -->
-							<img data-bind="attr: {src: file_url + '?path=' + location + $root[field_name]()}" onload="window.admin.resizePage()" />
+							<img data-bind="attr: {src: file_url + '?path=' + (display_use_location ? location : '') + $root[field_name]()}" onload="window.admin.resizePage()" />
 						<!-- /ko -->
 
 						<!-- ko if: editable -->
@@ -297,7 +297,7 @@
 			<input type="button" value="<?php echo trans('administrator::administrator.close') ?>"
 				data-bind="click: closeItem, attr: {disabled: $root.freezeForm() || $root.freezeActions()}" />
 
-			<!-- ko if: Object.keys(originalEditFields).length > 1 || Object.keys(originalEditFields)[0] != 'id' -->
+			<!-- ko if: Object.keys(originalEditFields).length > 1 -->
 				<!-- ko if: actionPermissions.delete -->
 					<input type="button" value="<?php echo trans('administrator::administrator.delete') ?>"
 					data-bind="click: deleteItem, attr: {disabled: $root.freezeForm() || $root.freezeActions()}" />

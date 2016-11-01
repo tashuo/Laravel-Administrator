@@ -53,7 +53,7 @@
 			<!-- /ko -->
 		</tbody>
 	</table>
-
+	<br/>
 	<div class="page_container">
 		<div class="per_page">
 			<input type="hidden" data-bind="value: rowsPerPage, select2: {minimumResultsForSearch: -1, data: {results: rowsPerPageOptions},
