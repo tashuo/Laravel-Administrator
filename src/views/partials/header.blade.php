@@ -51,7 +51,10 @@
 				@if(config('administrator.logout_path'))
 					<ul>
 						<li>
-							<a href="{{url(config('administrator.logout_path'))}}" id="logout">{{trans('administrator::administrator.logout')}}</a>
+							<a href="{{url(config('administrator.logout_path'))}}" id="logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{trans('administrator::administrator.logout')}}</a>
+							<form id="logout-form" action="{{ url(config('administrator.logout_path')) }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
 						</li>
 					</ul>
 				@endif
