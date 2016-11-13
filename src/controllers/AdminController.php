@@ -177,7 +177,7 @@ class AdminController extends Controller {
 		$config = app('itemconfig');
 		$actionFactory = app('admin_action_factory');
 		$baseModel = $config->getDataModel();
-		$model = $baseModel::find($id);
+		$model = $baseModel->find($id);
 		$errorResponse = array(
 			'success' => false,
 			'error' => "There was an error deleting this item. Please reload the page and try again.",
@@ -278,7 +278,7 @@ class AdminController extends Controller {
 		$config = app('itemconfig');
 		$actionFactory = app('admin_action_factory');
 		$model = $config->getDataModel();
-		$model = $model::find($id);
+		$model = $model->find($id);
 		$actionName = $this->request->input('action_name', false);
 
 		//get the action and perform the custom action
