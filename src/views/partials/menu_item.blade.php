@@ -1,5 +1,4 @@
 @if (is_array($item))
-	@if ($key == 'live' || Auth::user()->hasRole(['admin', 'operater']))
 	<li class="menu">
 		<span>{{$item['title']}}</span>
 		<ul>
@@ -13,9 +12,7 @@
 			@endforeach
 		</ul>
 	</li>
-	@endif
 @else
-	@if (Auth::user()->hasRole(['admin', 'operater']) || $key == 'live')
 		<li class="item<?=(strpos($_SERVER['REQUEST_URI'], $key) > 0 || ($_SERVER['REQUEST_URI'] == '/admin/settings/site' && $key == 'settings.site')) ? ' focus' : ''?>">
 			@if (strpos($key, $settingsPrefix) === 0)
 				<a href="{{route('admin_settings', array(substr($key, strlen($settingsPrefix))))}}">{{$item}}</a>
@@ -25,5 +22,4 @@
 				<a href="{{route('admin_index', array($key))}}">{{$item}}</a>
 			@endif
 		</li>
-	@endif
 @endif
