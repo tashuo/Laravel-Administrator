@@ -61,6 +61,8 @@
 			</li>
 
 		</ul>
-		<a href="{{url('/register')}}" id="back_to_site">{{trans('administrator::administrator.create_new_administrator')}}</a>
+		@if (Auth::user()->hasRole(['admin', 'operater']))
+			<a href="{{url('/users/create')}}" id="back_to_site">{{trans('administrator::administrator.create_new_administrator')}}</a>
+		@endif
 	</div>
 </header>
