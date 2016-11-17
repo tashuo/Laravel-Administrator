@@ -13,7 +13,6 @@ View::composer('administrator::index', function($view)
 	$dataTable = app('admin_datatable');
 	$model = $config->getDataModel();
 	$baseUrl = route('admin_dashboard');
-
 	$route = parse_url($baseUrl);
 
 	//add the view fields
@@ -35,6 +34,9 @@ View::composer('administrator::index', function($view)
 	$view->route = (isset($route['path']) ? $route['path'] : '') .'/';
 	$view->itemId = isset($view->itemId) ? $view->itemId : null;
 	$view->showAddBtn = empty($config->getOption('showAddBtn')) ? false : true;
+
+	// 组装直播hls地址
+	$view->liveHlsUrl = $config->getOption('liveHlsUrl') ? ($view->itemId ? sprintf($config->getOption('liveHlsUrl'), $model::find($view->itemId)->stream_id) : $config->getOption('liveHlsUrl')) : '';
 });
 
 //admin settings view
@@ -68,6 +70,9 @@ View::composer(array('administrator::partials.header'), function($view)
 //the layout view
 View::composer(array('administrator::layouts.default'), function($view)
 {
+	$config = app('itemconfig');
+	$additional_js = $config->getOption('additional_js');
+	$additional_css = $config->getOption('additional_css');
 	//set up the basic asset arrays
 	$view->css = array();
 	$view->js = array(
@@ -134,4 +139,12 @@ View::composer(array('administrator::layouts.default'), function($view)
 	}
 
 	$view->js += array('page' => asset('packages/frozennode/administrator/js/page.js'));
+
+	// 附加js/css
+	if (!empty($additional_js) && is_array($additional_js)) {
+		$view->js += $additional_js;
+	}
+	if (!empty($additional_css) && is_array($additional_css)) {
+		$view->css += $additional_css;
+	}
 });

@@ -79,7 +79,6 @@ class AdminController extends Controller {
 		$columnFactory = app('admin_column_factory');
 		$actionPermissions = $actionFactory->getActionPermissions();
 		$fields = $fieldFactory->getEditFields();
-		
 		//if it's ajax, we just return the item information as json
 		if ($this->request->ajax())
 		{

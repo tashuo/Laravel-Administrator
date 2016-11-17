@@ -138,7 +138,8 @@ abstract class Config {
 
 		if (!array_key_exists($key, $options))
 		{
-			throw new \InvalidArgumentException("An invalid option was searched for in the '" . $options['name'] . "' config");
+			// throw new \InvalidArgumentException("An invalid option was searched for in the '" . $options['name'] . "' config");
+			return false;
 		}
 
 		return $options[$key];

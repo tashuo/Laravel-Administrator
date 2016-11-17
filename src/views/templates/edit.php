@@ -3,7 +3,6 @@
 <form class="edit_form" data-bind="visible: !loadingItem(), submit: saveItem">
 	<h2 data-bind="text: $root[$root.primaryKey]() ? '<?php echo trans('administrator::administrator.edit') ?>' :
 		'<?php echo trans('administrator::administrator.createnew') ?>'"></h2>
-
 	<!-- ko if: $root[$root.primaryKey]() -->
 		<!-- ko if: $root.itemLink() -->
 			<a class="item_link" target="_blank" data-bind="attr: {href: $root.itemLink()},
@@ -323,3 +322,14 @@
 
 	<span class="message" data-bind="css: { error: statusMessageType() == 'error', success: statusMessageType() == 'success' },notification: statusMessage "></span>
 </form>
+
+<!-- ko if: liveHlsUrl -->
+	<div>
+  		<video id="my_video_1" class="video-js vjs-default-skin" controls preload="auto" width="226" height="400" 
+  data-setup='{}'>
+    		<source data-bind="attr: {src: liveHlsUrl}" type="application/x-mpegURL">
+  		</video>
+	</div>
+<!-- /ko -->
+
+<br/><br/>
