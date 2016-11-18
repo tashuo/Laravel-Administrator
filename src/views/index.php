@@ -34,6 +34,7 @@
 			column_model: <?php echo json_encode($columnModel) ?>,
 			action_permissions: <?php echo json_encode($actionPermissions) ?>,
 			showAddBtn: <?=json_encode($showAddBtn)?>,
+			tr_jump: <?=json_encode($tr_jump)?>,
 			liveHlsUrl: <?=json_encode($liveHlsUrl)?>,
 			languages: <?php echo json_encode(trans('administrator::knockout')) ?>
 		};

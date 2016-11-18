@@ -43,7 +43,7 @@
 		</thead>
 		<tbody>
 			<!-- ko foreach: rows -->
-				<!-- ko if: $root.liveHlsUrl -->
+				<!-- ko if: $root.tr_jump -->
 					<tr data-bind="click: function() { window.location.href = '/admin/' + $root.modelName() + '/' + $data[$root.primaryKey].raw; return true}, css: {result: true, even: $index() % 2 == 1, odd: $index() % 2 != 1, selected: $data[$root.primaryKey].raw == $root.itemLoadingId()}">
 					<!-- ko foreach: $root.columns -->
 						<td data-bind="html: $parentContext.$data[column_name].rendered, visible: visible"></td>
@@ -51,7 +51,7 @@
 					</tr>
 				<!-- /ko -->
 
-				<!-- ko if: !$root.liveHlsUrl -->
+				<!-- ko if: !$root.tr_jump -->
 					<tr data-bind="click: function() {$root.clickItem($data[$root.primaryKey].raw); return true}, css: {result: true, even: $index() % 2 == 1, odd: $index() % 2 != 1, selected: $data[$root.primaryKey].raw == $root.itemLoadingId()}">
 					<!-- ko foreach: $root.columns -->
 						<td data-bind="html: $parentContext.$data[column_name].rendered, visible: visible"></td>

@@ -34,9 +34,8 @@ View::composer('administrator::index', function($view)
 	$view->route = (isset($route['path']) ? $route['path'] : '') .'/';
 	$view->itemId = isset($view->itemId) ? $view->itemId : null;
 	$view->showAddBtn = empty($config->getOption('showAddBtn')) ? false : true;
-
-	// 组装直播hls地址
-	$view->liveHlsUrl = $config->getOption('liveHlsUrl') ? ($view->itemId ? sprintf($config->getOption('liveHlsUrl'), $model::find($view->itemId)->stream_id) : $config->getOption('liveHlsUrl')) : '';
+	$view->tr_jump = empty($config->getOption('tr_jump')) ? false : true;
+	$view->liveHlsUrl = (!empty($hls = $config->getOption('liveHlsUrl')) && !empty($view->itemId)) ? ((!empty($info = $model::find($view->itemId)) && ($info->is_living == config('config.live.is_living_status'))) ? sprintf($hls, $info->stream_id) : '') : '';		// 组装直播hls地址
 });
 
 //admin settings view
