@@ -296,12 +296,12 @@
 			<input type="button" value="<?php echo trans('administrator::administrator.close') ?>"
 				data-bind="click: closeItem, attr: {disabled: $root.freezeForm() || $root.freezeActions()}" />
 
+			<!-- ko if: actionPermissions.delete -->
+				<input type="button" value="<?php echo trans('administrator::administrator.delete') ?>"
+				data-bind="click: deleteItem, attr: {disabled: $root.freezeForm() || $root.freezeActions()}" />
+			<!-- /ko -->
+			
 			<!-- ko if: Object.keys(originalEditFields).length > 1 -->
-				<!-- ko if: actionPermissions.delete -->
-					<input type="button" value="<?php echo trans('administrator::administrator.delete') ?>"
-					data-bind="click: deleteItem, attr: {disabled: $root.freezeForm() || $root.freezeActions()}" />
-				<!-- /ko -->
-
 				<!-- ko if: actionPermissions.update -->
 					<input type="submit" value="<?php echo trans('administrator::administrator.save') ?>"
 					data-bind="attr: {disabled: $root.freezeForm() || $root.freezeActions()}" />
